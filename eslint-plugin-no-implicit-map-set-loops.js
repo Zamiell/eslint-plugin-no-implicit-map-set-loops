@@ -57,21 +57,27 @@ function noImplicitMapSetLoops(context) {
         context.parserServices.esTreeNodeToTSNodeMap.get(thingToIterateOver);
       const type = typeChecker.getTypeAtLocation(typescriptNode);
 
-      const nameOfType = type.symbol.escapedName;
-      if (nameOfType === "Map" || nameOfType === "Set") {
-        context.report({
-          node,
-          message:
-            "Implicit iteration over Maps and Sets is disallowed since it does not work robustly in TSTL.",
-          fix(fixer) {
-            if (nameOfType === "Map") {
-              return fixer.insertTextAfter(thingToIterateOver, ".entries()");
-            } else if (nameOfType === "Set") {
-              return fixer.insertTextAfter(thingToIterateOver, ".values()");
-            }
-          },
-        });
+      if (type.symbol === undefined || type.symbol.escapedName === undefined) {
+        return;
       }
+
+      const nameOfType = type.symbol.escapedName;
+      if (nameOfType !== "Map" && nameOfType !== "Set") {
+        return;
+      }
+
+      context.report({
+        node,
+        message:
+          "Implicit iteration over Maps and Sets is disallowed since it does not work robustly in TSTL.",
+        fix(fixer) {
+          if (nameOfType === "Map") {
+            return fixer.insertTextAfter(thingToIterateOver, ".entries()");
+          } else if (nameOfType === "Set") {
+            return fixer.insertTextAfter(thingToIterateOver, ".values()");
+          }
+        },
+      });
     },
   };
 }
