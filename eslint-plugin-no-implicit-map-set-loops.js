@@ -61,14 +61,15 @@ function noImplicitMapSetLoops(context) {
       if (nameOfType === "Map" || nameOfType === "Set") {
         context.report({
           node,
-          message: "Implicit iteration over Maps and Sets is disallowed since it does not work robustly in TSTL.",
+          message:
+            "Implicit iteration over Maps and Sets is disallowed since it does not work robustly in TSTL.",
           fix(fixer) {
             if (nameOfType === "Map") {
               return fixer.insertTextAfter(thingToIterateOver, ".entries()");
             } else if (nameOfType === "Set") {
               return fixer.insertTextAfter(thingToIterateOver, ".values()");
             }
-          }
+          },
         });
       }
     },
