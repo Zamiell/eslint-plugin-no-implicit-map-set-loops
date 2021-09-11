@@ -21,7 +21,7 @@ This is useful because implicit iteration does not work robustly with the TypeSc
 ## How do I use it?
 
 * `npm install --save-dev eslint-plugin-no-implicit-map-set-loops`
-* Add  `"plugin:no-implicit-map-set-loops-fix/recommended"` to the `extends` section of your `.eslintrc.js` file.
+* Add  `"plugin:no-implicit-map-set-loops/recommended"` to the `extends` section of your `.eslintrc.js` file.
 
 <br />
 
