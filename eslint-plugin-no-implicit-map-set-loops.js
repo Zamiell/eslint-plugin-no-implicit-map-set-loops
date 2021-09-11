@@ -23,10 +23,6 @@ module.exports = {
         },
 
         fixable: "code",
-
-        messages: {
-          unexpected: "Expected 'foo' and instead saw 'bar'.",
-        },
       },
     },
   },
