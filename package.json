@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-no-implicit-map-set-loops",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A rule that prevents implicit iteration for Maps and Sets.",
   "keywords": [
     "eslint",
